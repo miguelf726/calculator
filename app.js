@@ -2,6 +2,9 @@ let numOne;
 let numTwo;
 let operator ;
 
+const preview = document.querySelector('.preview')
+const display = document.querySelector('.display')
+
 function add(numOne, numTwo) {
   return numOne + numTwo;
 }
