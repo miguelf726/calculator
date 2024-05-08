@@ -5,6 +5,10 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+body{
+    background-color:blanchedalmond;
+}
+
 #container {
   width: 400px;
   background-color: rgba(14, 49, 206, 0.907);
@@ -42,6 +46,7 @@
   display: flex;
   justify-content: end;
   align-items: center;
+  margin-right: 12px;
 }
 
 .btns-container {

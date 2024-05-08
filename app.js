@@ -1,9 +1,12 @@
-let numOne;
-let numTwo;
-let operator ;
+let rightNum = "";
+let leftNum = "";
+let operator = "";
 
-const preview = document.querySelector('.preview')
-const display = document.querySelector('.display')
+const preview = document.querySelector(".preview");
+const display = document.querySelector(".display");
+const numberBtn = document.querySelectorAll(".num");
+const operandBtn = document.querySelectorAll(".operand");
+const clearBtn = document.querySelector(".clear");
 
 function add(numOne, numTwo) {
   return numOne + numTwo;
@@ -18,21 +21,42 @@ function divide(numOne, numTwo) {
   return numOne / numTwo;
 }
 
+console.log(operate("-"));
 
-function operate(operator, numOne, numTwo) {
-  if (operator==='+') {
-   return add(numOne, numTwo);
-  }
-  else if(operator==='-'){
-    return subtract(numOne, numTwo)
-  }
-  else if(operator==='*'){
-   return multiply(numOne, numTwo)
-  }
-  else if(operator==='/'){
-   return divide(numOne, numTwo)
-  }
+function clearDisplay() {
+  return (display.textContent = "");
 }
 
+clearBtn.addEventListener("click", () => {
+  display.textContent = "";
+  preview.textContent = "";
+});
 
-console.log(operate('-',2, 3));
+const digit = numberBtn.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    console.log("num");
+    display.textContent += btn.textContent;
+    preview.textContent += btn.textContent;
+  });
+});
+const operand = operandBtn.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    console.log("num");
+    preview.textContent += btn.textContent;
+  });
+});
+
+
+function operate(operator) {
+
+    if (operator === "+") {
+      return add(leftNum, rightNum);
+    } else if (operator === "-") {
+      return subtract(leftNum, rightNum);
+    } else if (operator === "*") {
+      return multiply(leftNum, rightNum);
+    } else if (operator === "/") {
+      return divide(leftNum, rightNum);
+    }
+  }
+  
