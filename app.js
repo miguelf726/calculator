@@ -1,12 +1,12 @@
-let rightNum = "";
-let leftNum = "";
-let operator = "";
+let display = "";
 
-const preview = document.querySelector(".preview");
-const display = document.querySelector(".display");
-const numberBtn = document.querySelectorAll(".num");
-const operandBtn = document.querySelectorAll(".operand");
-const clearBtn = document.querySelector(".clear");
+let leftOperator = "";
+let rightOperator = "";
+let firstOperand = "";
+let secondOperand = "";
+
+const displayDiv = document.querySelector(".display");
+const buttons = document.querySelectorAll("button");
 
 function add(numOne, numTwo) {
   return numOne + numTwo;
@@ -21,42 +21,68 @@ function divide(numOne, numTwo) {
   return numOne / numTwo;
 }
 
-console.log(operate("-"));
-
 function clearDisplay() {
-  return (display.textContent = "");
+  calculator.leftOperator = "";
+  calculator.rightOperator = "";
+  calculator.firstOperand = "";
+  calculator.secondOperand = "";
 }
 
-clearBtn.addEventListener("click", () => {
-  display.textContent = "";
-  preview.textContent = "";
-});
-
-const digit = numberBtn.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    console.log("num");
-    display.textContent += btn.textContent;
-    preview.textContent += btn.textContent;
+function populateDisplay() {
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (btn.classList.contains("num")) {
+        console.log("hello");
+        display += btn.textContent;
+        updateDisplay();
+      } 
+      else if (btn.classList.contains("operator")) {
+        console.log("operator");
+        updateDisplay();
+      }
+      else if (btn.classList.contains("equals")) {
+        console.log("equals");
+        updateDisplay();
+      }
+      else if (btn.classList.contains("decimal")) {
+        console.log("decimal");
+        updateDisplay();
+      }
+      else if (btn.classList.contains("delete")) {
+        console.log("delete");
+        updateDisplay();
+      }
+      else if (btn.classList.contains("clear")) {
+        console.log("clear");
+        updateDisplay();
+      }
+    });
   });
-});
-const operand = operandBtn.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    console.log("num");
-    preview.textContent += btn.textContent;
-  });
-});
+}
+populateDisplay();
 
-
-function operate(operator) {
-
-    if (operator === "+") {
-      return add(leftNum, rightNum);
-    } else if (operator === "-") {
-      return subtract(leftNum, rightNum);
-    } else if (operator === "*") {
-      return multiply(leftNum, rightNum);
-    } else if (operator === "/") {
-      return divide(leftNum, rightNum);
-    }
+function operator() {
+  if ((leftOperator = "")) {
+    display = leftOperator;
+    console.log(display);
   }
-  
+}
+operator();
+
+
+function updateDisplay() {
+  displayDiv.textContent = display;
+}
+updateDisplay();
+
+function operate(leftNum, rightNum, operator) {
+  if (operator === "+") {
+    return add(leftNum, rightNum);
+  } else if (operator === "-") {
+    return subtract(leftNum, rightNum);
+  } else if (operator === "*") {
+    return multiply(leftNum, rightNum);
+  } else if (operator === "/") {
+    return divide(leftNum, rightNum);
+  }
+}

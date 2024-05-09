@@ -32,21 +32,15 @@ body{
 
 }
 
-.preview {
-  height: 32px;
-  font-size: 24px;
-}
-.display {
-  height: 128px;
-  font-size: 64px;
-}
 
-.preview,
+
 .display {
   display: flex;
   justify-content: end;
   align-items: center;
   margin-right: 12px;
+   height: 128px;
+  font-size: 64px;
 }
 
 .btns-container {
@@ -70,7 +64,7 @@ button {
   display: flex;
   flex-direction: column;
 }
-.operands {
+.operators {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -91,7 +85,7 @@ button {
   flex-grow: 2.5;
 }
 
-.operand,
+.operator,
 .clear {
   background-color: rgb(208, 22, 22);
   color: white;
