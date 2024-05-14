@@ -1,9 +1,7 @@
 let display = "0";
-
 let firstNumber = "";
 let secondNumber = "";
-let firstOperator = "";
-let secondOperator = "";
+let currentOperator = "";
 
 const displayDiv = document.querySelector(".display");
 const buttons = document.querySelectorAll("button");
@@ -11,10 +9,14 @@ const buttons = document.querySelectorAll("button");
 function clearDisplay() {
   firstNumber = "";
   secondNumber = "";
-  firstOperator = "";
-  secondOperator = "";
-  display = "";
+  currentOperator = "";
+  display = "0";
 }
+
+function updateDisplay() {
+  displayDiv.textContent = display;
+}
+updateDisplay();
 
 function populateDisplay() {
   buttons.forEach((btn) => {
@@ -33,11 +35,13 @@ function populateDisplay() {
         updateDisplay();
       } else if (btn.classList.contains("decimal")) {
         console.log("decimal");
+        decimal(btn.textContent);
         updateDisplay();
       } else if (btn.classList.contains("delete")) {
         console.log("delete");
         updateDisplay();
       } else if (btn.classList.contains("clear")) {
+        // console.log('clear')
         clearDisplay();
         updateDisplay();
       }
@@ -47,7 +51,7 @@ function populateDisplay() {
 populateDisplay();
 
 function operand(num) {
-  if (firstOperator === "") {
+  if (currentOperator === "") {
     if (display === "0" || display === undefined) {
       display = num;
       console.log(display);
@@ -67,31 +71,50 @@ function operand(num) {
 operand();
 
 function operator(op) {
-  if (firstOperator != "") {
+  if (currentOperator != "") {
     secondNumber = display;
-    display = operate(Number(firstNumber), Number(secondNumber), firstOperator);
+    display = operate(
+      Number(firstNumber),
+      Number(secondNumber),
+      currentOperator
+    );
     console.log(display);
     firstNumber = display;
-    firstOperator = op;
+    currentOperator = op;
   } else {
-    firstOperator = op;
+    currentOperator = op;
     firstNumber = display;
-    console.log(firstOperator);
+    console.log(currentOperator);
   }
 }
 
 function equals() {
-  secondNumber = display;
-  display = operate(Number(firstNumber), Number(secondNumber), firstOperator);
-  console.log(display);
-  firstNumber = display;
-  firstOperator = "";
+  if (currentOperator === "") {
+    display = display;
+  } else {
+    secondNumber = display;
+    display = operate(
+      Number(firstNumber),
+      Number(secondNumber),
+      currentOperator
+    );
+    console.log(display);
+    firstNumber = display;
+    currentOperator = "";
+  }
 }
 
-function updateDisplay() {
-  displayDiv.textContent = display;
+function decimal(period) {
+  if (display === firstNumber || display === secondNumber) {
+    display = "0";
+    display += period;
+  } else if (display === "0" || display === undefined) {
+    display = "0";
+    display += period;
+  } else if (!display.includes(period)) {
+    display += period;
+  }
 }
-updateDisplay();
 
 function add(numOne, numTwo) {
   return numOne + numTwo;
