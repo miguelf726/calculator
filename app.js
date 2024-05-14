@@ -45,7 +45,7 @@ function populateDisplay() {
         decimal(btn.textContent);
         updateDisplay();
       } else if (btn.classList.contains("delete")) {
-        console.log("delete");
+        // console.log("delete");
         deleteNumber();
         updateDisplay();
       } else if (btn.classList.contains("clear")) {
