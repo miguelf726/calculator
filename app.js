@@ -67,21 +67,25 @@ function operand(num) {
 operand();
 
 function operator(op) {
-  firstOperator = op;
-  firstNumber = display;
-  console.log(firstOperator);
+  if (firstOperator != "") {
+    secondNumber = display;
+    display = operate(Number(firstNumber), Number(secondNumber), firstOperator);
+    console.log(display);
+    firstNumber = display;
+    firstOperator = op;
+  } else {
+    firstOperator = op;
+    firstNumber = display;
+    console.log(firstOperator);
+  }
 }
 
 function equals() {
-  // if(firstOperator===''){
-  //   display=display
-  // }else {
   secondNumber = display;
-  display =  operate(Number(firstNumber), Number(secondNumber), firstOperator);
-  console.log(display)
-  // }
-  // firstNumber=display
-
+  display = operate(Number(firstNumber), Number(secondNumber), firstOperator);
+  console.log(display);
+  firstNumber = display;
+  firstOperator = "";
 }
 
 function updateDisplay() {
