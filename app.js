@@ -34,11 +34,12 @@ function populateDisplay() {
         equals();
         updateDisplay();
       } else if (btn.classList.contains("decimal")) {
-        console.log("decimal");
+        // console.log("decimal");
         decimal(btn.textContent);
         updateDisplay();
       } else if (btn.classList.contains("delete")) {
         console.log("delete");
+        deleteNumber()
         updateDisplay();
       } else if (btn.classList.contains("clear")) {
         // console.log('clear')
@@ -114,6 +115,9 @@ function decimal(period) {
   } else if (!display.includes(period)) {
     display += period;
   }
+}
+function deleteNumber() {
+ display = display.slice(0,(display.length-1))
 }
 
 function add(numOne, numTwo) {
