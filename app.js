@@ -11,16 +11,15 @@ function clearDisplay() {
   secondNumber = "";
   currentOperator = "";
   display = "0";
- 
 }
+
+
 
 function updateDisplay() {
   displayDiv.textContent = display;
-}
-updateDisplay();
-
-function updateDisplay() {
-  displayDiv.textContent = display;
+  if (display.length > 9) {
+    display = display.substring(0, 8);
+  }
 }
 updateDisplay();
 
@@ -41,7 +40,7 @@ function populateDisplay() {
         updateDisplay();
       } else if (btn.classList.contains("decimal")) {
         // console.log("decimal");
-        
+
         decimal(btn.textContent);
         updateDisplay();
       } else if (btn.classList.contains("delete")) {
@@ -76,14 +75,13 @@ function operand(num) {
     }
   }
 }
-operand();
 
 function operator(op) {
   if (currentOperator != "") {
-    secondNumber=display
+    secondNumber = display;
     display = operate(
-      Number(firstNumber),
-      Number(secondNumber),
+      parseFloat(firstNumber),
+      parseFloat(secondNumber),
       currentOperator
     );
     console.log(display);
@@ -102,21 +100,8 @@ function equals() {
   } else {
     secondNumber = display;
     display = operate(
-      Number(firstNumber),
-      Number(secondNumber),
-      currentOperator
-    );
-    console.log(display);
-    firstNumber = display;
-    currentOperator = "";
-  }
-  if (currentOperator === "") {
-    display = display;
-  } else {
-    secondNumber = display;
-    display = operate(
-      Number(firstNumber),
-      Number(secondNumber),
+      parseFloat(firstNumber),
+      parseFloat(secondNumber),
       currentOperator
     );
     console.log(display);
@@ -136,9 +121,11 @@ function decimal(period) {
     display += period;
   }
 }
+
 function deleteNumber() {
   display = display.slice(0, display.length - 1);
 }
+
 function decimal(period) {
   if (display === firstNumber || display === secondNumber) {
     display = "0";
